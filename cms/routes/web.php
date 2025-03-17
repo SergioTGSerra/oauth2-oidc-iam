@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Http;
 
 Route::get('/login', function () {
-    return Redirect::away('http://localhost:8080/oauth2/authorize?response_type=code&client_id=amason-cms&redirect_uri=http%3A%2F%2Fcms%3A8001%2Fcallback&scope=openid+profile');
+    return Redirect::away('http://auth:8080/oauth2/authorize?response_type=code&client_id=amason-cms&redirect_uri=http%3A%2F%2Fcms%3A8001%2Fcallback&scope=openid+profile');
 })->name('filament.admin.auth.login');
 
 Route::get('/callback', function () {
