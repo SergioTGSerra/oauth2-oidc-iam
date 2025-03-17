@@ -1,0 +1,38 @@
+services:
+
+  auth:
+    build:
+      context: ./auth
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./auth:/app
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:17-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: authdb-user
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: authdb
+
+  user-manager:
+    build:
+      context: ./user-manager
+    ports:
+      - "3000:3000"
+
+  ecommerce:
+    build:
+      context: ./ecommerce
+    ports:
+      - "8000:80"
+
+  cms:
+    build:
+      context: ./cms
+    ports:
+      - "8001:80"
