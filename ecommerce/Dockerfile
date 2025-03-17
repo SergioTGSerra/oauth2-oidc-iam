@@ -38,6 +38,13 @@ RUN composer install --ignore-platform-reqs
 #Remove sqlite database if exists
 RUN rm -f /var/www/html/database/database.sqlite
 
+#Copy .env file
+RUN cp /var/www/html/.env.example /var/www/html/.env && \
+    sed -i 's|APP_URL=.*|APP_URL=http://ecommerce:8000|' /var/www/html/.env
+
+RUN php artisan key:generate
+
+
 # Set permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 RUN chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
