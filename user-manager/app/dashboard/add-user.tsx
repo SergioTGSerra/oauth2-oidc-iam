@@ -37,6 +37,9 @@ export function AddUser({ className = "" }) {
 
     if (response.success) {
       setMessage("User created successfully!");
+      setTimeout(() => {
+        window.location.reload(); // 🔄 Recarrega a página após 1 segundo
+      }, 500);
     } else {
       setMessage(`Error: ${response.message}`);
     }
